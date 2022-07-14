@@ -13,7 +13,7 @@
     
     
     
-    <title>网易云NCM无损转FLAC批处理 | Wolf&#39;s Blog</title>
+    <title>关于gmod zs医疗包重置冷却时间的bug | Wolf&#39;s Blog</title>
     <link href="”https://blog.bluewolf.moe“" rel="”prefetch”">
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -176,19 +176,19 @@
         <i class="fa fa-home"></i>
         <a href="https://blog.bluewolf.moe">Wolf&#39;s Blog</a>
         >
-        <span>网易云NCM无损转FLAC批处理</span>
+        <span>关于gmod zs医疗包重置冷却时间的bug</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/163/">网易云NCM无损转FLAC批处理</a>
+                <a href="/gmod_medikit_bug/">关于gmod zs医疗包重置冷却时间的bug</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2019-01-13
+                <i class="fa fa-calendar"></i> 2019-07-23
             </span>
             
         </div>
@@ -198,11 +198,11 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/163/">网易云NCM无损转FLAC批处理</a>
+                    <a href="/gmod_medikit_bug/">关于gmod zs医疗包重置冷却时间的bug</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2019-01-13
+                <i class="fa fa-calendar"></i> 2019-07-23
             </p>
             <p>
                 
@@ -211,10 +211,27 @@
         </center>
     </div>
     <div class="content-article">
-        <p>一个NCM转FLAC批处理，现学现用的临时产物，不是很好用<br>具体使用说明看压缩包里的Readme，需要python运行环境</p>
-<blockquote>
-<p>蓝奏云 <a href="https://www.lanzous.com/i2v3duj" target="_blank" rel="noopener">https://www.lanzous.com/i2v3duj</a></p>
+        <blockquote>
+<p>最近在服务器里发现有玩家可以无视医疗包冷却时间，做到快速治疗，遂在本地进行了测试</p>
 </blockquote>
+<h3 id="复现方法"><a href="#复现方法" class="headerlink" title="复现方法"></a><strong>复现方法</strong></h3><ol start="0">
+<li>打开控制台，输入bind q “zsdropammo”, bind g “zs_pointsshopbuy battery”</li>
+<li>购买一个医疗包，通过正常方式使用掉医疗包里自带的30点能量(这里的30点能量判定为弹匣，无法通过指令zsdropammo掉落)</li>
+<li>医疗包能量为0后，购买一份医疗能量(这里的医疗能量会被判定为备弹，可以通过指令zsdropammo掉落)</li>
+<li><p>正常使用医疗包，此时冷却时间正常</p>
+<p><a href="https://imgtu.com/i/jWUIER" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2022/07/13/jWUIER.png" alt="jWUIER.png"></a></p>
+</li>
+<li>==(重点) #F44336==马上按下G(此前绑定了指令zsdropammo)，此时医疗能量会被清空并形成掉落物</li>
+<li><p>再次使用医疗包，此时冷却时间会被大大缩短</p>
+<p><a href="https://imgtu.com/i/jWUHC6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2022/07/13/jWUHC6.png" alt="jWUHC6.png"></a></p>
+</li>
+<li>按下G购买医疗能量(此前绑定了指令zs_pointsshopbuy battery)</li>
+<li>从步骤3开始循环操作，制作为鼠标宏方便使用，即可实现快速治疗的效果</li>
+</ol>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h3><p>一开始想过直接给zs_pointsshopbuy设置为管理员指令，这样普通玩家就无法使用了，但正常游戏中许多地方都需要调用这个指令，改动起来太过麻烦<br>最终选择了修改医疗包的lua来解决，\zombiesurvival\entities\weapons\weapon_zs_medicalkit.lua第167行</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SWEP:CanPrimaryAttack</span><span class="params">()</span></span></span><br><span class="line">	<span class="keyword">local</span> owner = self:GetOwner()</span><br><span class="line">	<span class="keyword">if</span> owner:IsHolding() <span class="keyword">or</span> owner:GetBarricadeGhosting() <span class="keyword">then</span> <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> self:GetPrimaryAmmoCount() &lt;= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">		self:EmitSound(<span class="string">"items/medshotno1.wav"</span>)</span><br><span class="line">		<span class="comment">-- 修复医疗能量为0时进行治疗可以大幅缩短冷却时间的BUG，原版为0.75</span></span><br><span class="line">		self:SetNextCharge(CurTime() + self.Primary.Delay)</span><br><span class="line">		owner.NextMedKitUse = self:GetNextCharge()</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> self:GetNextCharge() &lt;= CurTime() <span class="keyword">and</span> (owner.NextMedKitUse <span class="keyword">or</span> <span class="number">0</span>) &lt;= CurTime()</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>完美解决</p>
+<p><a href="https://imgtu.com/i/jWUT4x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2022/07/13/jWUT4x.png" alt="jWUT4x.png"></a></p>
 
     </div>
 </article>
@@ -319,7 +336,7 @@
                 
                 <!-- class= active表示进入页面后直接选中个人链接 -->
                 <li class="active">
-                    <a href="/163/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/gmod_medikit_bug/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>

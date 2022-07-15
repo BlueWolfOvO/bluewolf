@@ -4,7 +4,7 @@
     <link rel="icon" href="/imgs/illust_70352399_20190113_182400.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="author" content="苍狼">
+    <meta name="author" content="BlueWolf">
     
     <meta name="description" content="此生相遇，三生有幸">
     
@@ -137,6 +137,10 @@
                             <a href="/categories/GMOD/">GMOD</a>
                         </li>
                         
+                        <li>
+                            <a href="/categories/Minecraft/">Minecraft</a>
+                        </li>
+                        
                         
                         
                     </ul>
@@ -188,7 +192,7 @@
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2019-07-23
+                <i class="fa fa-calendar"></i> 2020-07-23
             </span>
             
         </div>
@@ -202,7 +206,7 @@
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2019-07-23
+                <i class="fa fa-calendar"></i> 2020-07-23
             </p>
             <p>
                 
@@ -219,11 +223,11 @@
 <li>购买一个医疗包，通过正常方式使用掉医疗包里自带的30点能量(这里的30点能量判定为弹匣，无法通过指令zsdropammo掉落)</li>
 <li>医疗包能量为0后，购买一份医疗能量(这里的医疗能量会被判定为备弹，可以通过指令zsdropammo掉落)</li>
 <li><p>正常使用医疗包，此时冷却时间正常</p>
-<p><a href="https://imgtu.com/i/jWUIER" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2022/07/13/jWUIER.png" alt="jWUIER.png"></a></p>
+<p><img src="https://s1.ax1x.com/2022/07/13/jWUIER.png" alt="jWUIER.png"></p>
 </li>
-<li>==(重点) #F44336==马上按下G(此前绑定了指令zsdropammo)，此时医疗能量会被清空并形成掉落物</li>
+<li><font color="Red">(重点)</font>马上按下G(此前绑定了指令zsdropammo)，此时医疗能量会被清空并形成掉落物</li>
 <li><p>再次使用医疗包，此时冷却时间会被大大缩短</p>
-<p><a href="https://imgtu.com/i/jWUHC6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2022/07/13/jWUHC6.png" alt="jWUHC6.png"></a></p>
+<p><img src="https://s1.ax1x.com/2022/07/13/jWUHC6.png" alt="jWUHC6.png"></p>
 </li>
 <li>按下G购买医疗能量(此前绑定了指令zs_pointsshopbuy battery)</li>
 <li>从步骤3开始循环操作，制作为鼠标宏方便使用，即可实现快速治疗的效果</li>
@@ -231,7 +235,7 @@
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a><strong>解决方法</strong></h3><p>一开始想过直接给zs_pointsshopbuy设置为管理员指令，这样普通玩家就无法使用了，但正常游戏中许多地方都需要调用这个指令，改动起来太过麻烦<br>最终选择了修改医疗包的lua来解决，\zombiesurvival\entities\weapons\weapon_zs_medicalkit.lua第167行</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SWEP:CanPrimaryAttack</span><span class="params">()</span></span></span><br><span class="line">	<span class="keyword">local</span> owner = self:GetOwner()</span><br><span class="line">	<span class="keyword">if</span> owner:IsHolding() <span class="keyword">or</span> owner:GetBarricadeGhosting() <span class="keyword">then</span> <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> self:GetPrimaryAmmoCount() &lt;= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">		self:EmitSound(<span class="string">"items/medshotno1.wav"</span>)</span><br><span class="line">		<span class="comment">-- 修复医疗能量为0时进行治疗可以大幅缩短冷却时间的BUG，原版为0.75</span></span><br><span class="line">		self:SetNextCharge(CurTime() + self.Primary.Delay)</span><br><span class="line">		owner.NextMedKitUse = self:GetNextCharge()</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> self:GetNextCharge() &lt;= CurTime() <span class="keyword">and</span> (owner.NextMedKitUse <span class="keyword">or</span> <span class="number">0</span>) &lt;= CurTime()</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>完美解决</p>
-<p><a href="https://imgtu.com/i/jWUT4x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2022/07/13/jWUT4x.png" alt="jWUT4x.png"></a></p>
+<p><img src="https://s1.ax1x.com/2022/07/13/jWUT4x.png" alt="jWUT4x.png"></p>
 
     </div>
 </article>
@@ -255,7 +259,7 @@
     <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
         <div class="panel-heading" style="text-align: center">
             <i class="fa fa-quote-left"></i>
-            苍狼
+            BlueWolf
             <i class="fa fa-quote-right"></i>
         </div>
         <div class="author-panel text-center">
@@ -281,6 +285,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/mc_skinsite/">LNMP环境Minecraft皮肤站搭建过程</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/gmod_tttkarma/">ttt动态karma插件</a>
                 </span>
             </li>
@@ -293,7 +303,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/filminfo/">一些废话</a>
+                    <a href="/filminfo/">电影目录</a>
                 </span>
             </li>
             
@@ -305,7 +315,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/163/">网易云NCM无损转FLAC批处理</a>
+                    <a href="/npmconvert/">网易云NCM无损转FLAC批处理</a>
                 </span>
             </li>
             
@@ -317,7 +327,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/hello-world-1/">网易云直链解析API</a>
+                    <a href="/163download/">网易云直链解析API</a>
                 </span>
             </li>
             
@@ -352,11 +362,7 @@
     </li>
     
     <li>
-        <a href="https://coding.net/u/lboyue" target="_blank">Coding</a>
-    </li>
-    
-    <li>
-        <a href="http://pan.bluewolf.blog" target="_blank">苍狼の盘</a>
+        <a href="https://steamcommunity.com/id/bluewolf23333/" target="_blank">STEAM</a>
     </li>
     
 </div>
@@ -373,7 +379,7 @@
     </div>
     <footer id="gal-footer">
     <div class="container">
-        Copyright © 2018 苍狼 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+        Copyright © 2018 BlueWolf Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
     </div>
 </footer>
 

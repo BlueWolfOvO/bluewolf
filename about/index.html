@@ -4,7 +4,7 @@
     <link rel="icon" href="/imgs/illust_70352399_20190113_182400.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="author" content="苍狼">
+    <meta name="author" content="BlueWolf">
     
     <meta name="description" content="此生相遇，三生有幸">
     
@@ -137,6 +137,10 @@
                             <a href="/categories/GMOD/">GMOD</a>
                         </li>
                         
+                        <li>
+                            <a href="/categories/Minecraft/">Minecraft</a>
+                        </li>
+                        
                         
                         
                     </ul>
@@ -201,28 +205,26 @@
         </center>
     </div>
     <div class="content-article">
-        <p>自己建的一个Hexo博客，模板来自<a href="https://github.com/ZEROKISEKI/hexo-theme-gal" target="_blank" rel="noopener">GitHub</a>上的dalao</p>
-<p>虽然模板来自GitHub开源项目但是我进行了力所能及的优化</p>
+        <p>是一个热爱游戏和电影，有时也会去骑骑车的阿宅(x，正在自学C#，Unity和画画，想做一个末日轻科幻风，2.5D，偏探索和剧情向的游戏，主要讲述了一个破灭之战中幸存下来的人类超级士兵和一个失忆的小女孩在终末后的故事。<br>欢迎来我的<a href="https://steamcommunity.com/id/bluewolf23333/" target="_blank" rel="noopener">STEAM主页</a>找我玩！<br>最近在应聘米哈游的实习，希望自己可以被录用(阿巴阿巴)</p>
+<p>这是我的一个Hexo博客，模板来自<a href="https://github.com/ZEROKISEKI/hexo-theme-gal" target="_blank" rel="noopener">GitHub</a><br>虽然模板来自GitHub开源项目但是我进行了力所能及的优化</p>
 <p>   <strong>已解决/优化项目</strong></p>
 <ul>
 <li>-加入了Aplayer播放器插件并加入了歌词，歌单里是几首自己喜欢的歌</li>
 <li>-使用PJAX优化，实现网页预加载，加快读取速度，最重要的是不中断背景图片的播放和Aplayer的播放</li>
 <li>-对侧边栏(sidebar)进行了自定义，让其在网页加载完成后直接选中内容并显示下拉菜单(dropdown)</li>
 <li>-对背景图片(slideshow)的播放进行了自定义，在单张图片上比原来的动画停留时间更加长，但是不影响图片的淡入淡出</li>
-<li>-[已解决]修复了上传至GitHub/Coding后无法显示导航栏图标的问题，原因为font-awesome路径错误</li>
-<li>-[2019/1/13][已解决]上传至GitHub/Coding后无法进入网页自动播放音乐<br>  //发现这是 Chrome 的行为，进入 chrome://flags/#autoplay-policy 中的 Autoplay policy 策略改为 User gesture is required for cross-origin iframes</li>
-<li>-[2019/1/22][已解决]手机端浏览时背景不全的问题，解决方案来自(<a href="https://blog.csdn.net/longchenghui20/article/details/81164030" target="_blank" rel="noopener">https://blog.csdn.net/longchenghui20/article/details/81164030</a>)<br>  //发现手机端使用 Chorme 之外的浏览器浏览会导致背景图被压缩的现象，暂无解决方案</li>
+<li>-修复了上传至GitHub/Coding后无法显示导航栏图标的问题，原因为font-awesome路径错误</li>
+<li>-手机端浏览时背景不全的问题，解决方案来自(<a href="https://blog.csdn.net/longchenghui20/article/details/81164030" target="_blank" rel="noopener">https://blog.csdn.net/longchenghui20/article/details/81164030</a>)<br>  //发现手机端使用 Chorme 之外的浏览器浏览会导致背景图被压缩的现象，暂无解决方案</li>
+<li>-修复了背景图轮播时间轴错误的问题</li>
+<li>-修复了在子路径刷新网页Aplayer会出错的问题</li>
 </ul>
 <p><strong>待解决/未加入</strong><del>咕咕咕</del></p>
 <ul>
-<li>-[待解决]在子路径刷新网页Aplayer会出错</li>
 <li>-[待解决]Aplayer歌曲列表的背景是透明的….</li>
-<li>-[待解决]背景动画循环一次后会出现卡死</li>
 <li>-[未加入]弄一只Live2D看板娘并用PJAX进行优化</li>
-<li>-暂时就这么多，还没想好…</li>
 </ul>
 <hr>
-<p>更新于<code>2019/04/10 夜</code></p>
+<p>更新于<code>2022/7/12 凌晨</code></p>
 <blockquote>
 <p>PJAX            <a href="https://github.com/defunkt/jquery-pjax" target="_blank" rel="noopener">https://github.com/defunkt/jquery-pjax</a><br>Aplayer         <a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener">https://github.com/MoePlayer/APlayer</a></p>
 </blockquote>
@@ -250,7 +252,7 @@
     <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
         <div class="panel-heading" style="text-align: center">
             <i class="fa fa-quote-left"></i>
-            苍狼
+            BlueWolf
             <i class="fa fa-quote-right"></i>
         </div>
         <div class="author-panel text-center">
@@ -276,6 +278,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/mc_skinsite/">LNMP环境Minecraft皮肤站搭建过程</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/gmod_tttkarma/">ttt动态karma插件</a>
                 </span>
             </li>
@@ -288,7 +296,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/filminfo/">一些废话</a>
+                    <a href="/filminfo/">电影目录</a>
                 </span>
             </li>
             
@@ -300,7 +308,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/163/">网易云NCM无损转FLAC批处理</a>
+                    <a href="/npmconvert/">网易云NCM无损转FLAC批处理</a>
                 </span>
             </li>
             
@@ -312,7 +320,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/hello-world-1/">网易云直链解析API</a>
+                    <a href="/163download/">网易云直链解析API</a>
                 </span>
             </li>
             
@@ -347,11 +355,7 @@
     </li>
     
     <li>
-        <a href="https://coding.net/u/lboyue" target="_blank">Coding</a>
-    </li>
-    
-    <li>
-        <a href="http://pan.bluewolf.blog" target="_blank">苍狼の盘</a>
+        <a href="https://steamcommunity.com/id/bluewolf23333/" target="_blank">STEAM</a>
     </li>
     
 </div>
@@ -368,7 +372,7 @@
     </div>
     <footer id="gal-footer">
     <div class="container">
-        Copyright © 2018 苍狼 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+        Copyright © 2018 BlueWolf Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
     </div>
 </footer>
 

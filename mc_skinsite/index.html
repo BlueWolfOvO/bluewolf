@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <link rel="icon" href="/imgs/illust_70352399_20190113_182400.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="author" content="BlueWolf">
+    
+    <meta name="description" content="此生相遇，三生有幸">
+    
+    
+    
+    
+    
+    
+    <title>LNMP环境Minecraft皮肤站搭建过程 | Wolf&#39;s Blog</title>
+    <link href="”https://blog.bluewolf.moe“" rel="”prefetch”">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/aos.css">
+<link rel="stylesheet" href="/css/style.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/aos.js"></script>
+    <script src="/js/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" href="/js/highslide/highslide.css">
+    <style type="text/css">
+        @media (max-width: 768px) {
+          body{height: 100%;width: 100%;margin: 0 ;padding: 0;}
+            body {
+                background-color: #f0f0f0;
+                background: url('/imgs/31e626c468cb553e367ae15f876156fb.jpg');
+                background-attachment: fixed;
+                width: 100%;
+                height: 100%;
+                background-size: 100% 100%;
+                position: absolute;
+                filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='url('/imgs/31e626c468cb553e367ae15f876156fb.jpg')',sizingMethod='scale');
+            }
+        }
+    </style>
+    
+    <!--<script type="text/javascript">
+      if (document.images) {
+        var avatar = new Image();
+        avatar.src = '/imgs/illust_70352399_20180908_025225.png'
+        var previews = 'preview1.jpg,preview2.jpg,preview3.jpg,preview4.jpg'.split(',')
+        var previewsPreLoad = []
+        for(var i = 0; i < length; i++) {
+          previewsPreLoad.push(new Image())
+          previewsPreLoad[previewsPreLoad.length - 1].src = '/imgs/preview' + previews[i]
+        }
+      }
+    </script>-->
+    <!-- APLAYER和PJAX相关 -->
+    <script src="/pjax/jquery-3.2.js"></script>
+    <script src="/pjax/jquery.pjax.js"></script>
+    <link rel="stylesheet" href="/aplayer/APlayer.min.css">
+    <!-- 需要在js加载前创建一个div -->
+    <div id="aplayer"></div>
+    <script src="/aplayer/APlayer.min.js"></script>
+    <script src="/aplayer/music.js"></script>
+</head>
+</html>
+<body>
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 背景轮播图功能 -->
+    <section class="hidden-xs">
+    <ul class="cb-slideshow">
+        <li><span>天若</span></li>
+        <li><span>有情</span></li>
+        <li><span>天亦老</span></li>
+        <li><span>我为</span></li>
+        <li><span>长者</span></li>
+        <li><span>续一秒</span></li>
+    </ul>
+</section>
+    <!-- 欧尼酱功能, 谁用谁知道 -->
+    
+    <header class="navbar navbar-inverse" id="gal-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".bs-navbar-collapse" aria-expanded="false">
+                <span class="fa fa-lg fa-reorder"></span>
+            </button>
+            <a href="https://blog.bluewolf.moe">
+                
+                <style>
+                    #gal-header .navbar-brand {
+                        height: 54px;
+                        line-height: 24px;
+                        font-size: 28px;
+                        opacity: 1;
+                        background-color: rgba(0,0,0,0);
+                        text-shadow: 0 0 5px #fff,0 0 10px #fff,0 0 15px #fff,0 0 20px #228DFF,0 0 35px #228DFF,0 0 40px #228DFF,0 0 50px #228DFF,0 0 75px #228DFF;
+                    }
+                </style>
+                <!-- 这里使用文字(navbar_text or config.title) -->
+                <div class="navbar-brand">Wolf&#39;s Blog</div>
+                
+            </a>
+        </div>
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav" id="menu-gal">
+                
+                
+                <li class="">
+                    <a href="/">
+                        <i class="fa fa-home"></i>首页
+                    </a>
+                </li>
+                
+                
+                
+                <li class="">
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>归档
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
+                        <i class="fa fa-list"></i>分类
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/categories/杂物间/">杂物间</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/GMOD/">GMOD</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/Minecraft/">Minecraft</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+                <li class="">
+                    <a href="/tags">
+                        <i class="fa fa-tags"></i>标签
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="">
+                    <a href="/about">
+                        <i class="fa fa-user"></i>关于我
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </div>
+    </div>
+</header>
+    <div id="gal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 gal-right" id="musiclist">
+                    
+<article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="https://blog.bluewolf.moe">Wolf&#39;s Blog</a>
+        >
+        <span>LNMP环境Minecraft皮肤站搭建过程</span>
+    </div>
+    <!-- 大型设备详细文章 -->
+    <div class="hidden-xs">
+        <div class="title-article">
+            <h1>
+                <a href="/mc_skinsite/">LNMP环境Minecraft皮肤站搭建过程</a>
+            </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2022-07-09
+            </span>
+            
+        </div>
+    </div>
+    <!-- 小型设备详细文章 -->
+    <div class="visible-xs">
+        <center>
+            <div class="title-article">
+                <h4>
+                    <a href="/mc_skinsite/">LNMP环境Minecraft皮肤站搭建过程</a>
+                </h4>
+            </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2022-07-09
+            </p>
+            <p>
+                
+                
+            </p>
+        </center>
+    </div>
+    <div class="content-article">
+        <blockquote>
+<p>先附上皮肤站地址 skin.bluewolf.moe<br><br>  碎碎念：本次搭建过程中的nginx，php均使用了源码编译安装，中途踩了不少坑orz，下次还是用<a href="https://lnmp.org/download.html" target="_blank" rel="noopener">LNMP一键包</a>吧</p>
+</blockquote>
+<hr>
+<h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a><strong>环境安装</strong></h2><h3 id="gt-CentOS-7-9-2009-至少1G内存，最好再加上一些SWAP用于突发峰值"><a href="#gt-CentOS-7-9-2009-至少1G内存，最好再加上一些SWAP用于突发峰值" class="headerlink" title="&gt; CentOS 7.9.2009 (至少1G内存，最好再加上一些SWAP用于突发峰值)"></a><strong>&gt; CentOS 7.9.2009</strong> (至少1G内存，最好再加上一些SWAP用于突发峰值)</h3><h3 id="gt-依赖"><a href="#gt-依赖" class="headerlink" title="&gt; 依赖"></a><strong>&gt; 依赖</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install libxml2 libxml2-devel openssl openssl-devel curl-devel libjpeg-devel libpng-devel freetype-devel libmcrypt-devel sqlite-devel epel-release libxml2 libxml2-devel freetype freetype-devel bzip2 bzip2-devel</span><br></pre></td></tr></table></figure>
+<h3 id="gt-安装Mysql-8-0-29"><a href="#gt-安装Mysql-8-0-29" class="headerlink" title="&gt; 安装Mysql 8.0.29"></a><strong>&gt; 安装Mysql 8.0.29</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 下载至当前目录/root/</span><br><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-6.noarch.rpm</span><br><span class="line">yum -y install mysql80-community-release-el7-6.noarch.rpm</span><br><span class="line">yum -y install mysql-community-server</span><br><span class="line"><span class="meta">#</span> 注意，在安装mysql-community-server时可能会由于GPG校验的问题报错GPG key retrieval failed: [Errno 14] curl37，解决方法：编辑mysql-community.repo，将[mysql80-community]下gpgcheck=1改为0即可</span><br><span class="line">vim /etc/yum.repos.d/mysql-community.repo</span><br><span class="line"><span class="meta">#</span> 运行并查看服务状态</span><br><span class="line">systemctl start mysqld</span><br><span class="line">systemctl status mysqld</span><br></pre></td></tr></table></figure>
+<p>接下来需要连接数据库进行进一步操作，root用户的临时密码可以在日志中查看<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep "password" /var/log/mysqld.log</span><br></pre></td></tr></table></figure></p>
+<p>登录<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line"><span class="meta">#</span> 输入上一步中获取的临时密码</span><br><span class="line">Enter password:</span><br></pre></td></tr></table></figure></p>
+<p>修改密码<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER 'root'@'localhost' IDENTIFIED BY '你的密码';</span><br></pre></td></tr></table></figure></p>
+<p>需要遵循默认密码规则，后续可修改</p>
+<p><img src="https://s1.ax1x.com/2022/07/15/j4QR58.png" alt="密码规则"></p>
+<p>启用root用户远程连接<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> mysql;</span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> host = <span class="string">'%'</span> <span class="keyword">WHERE</span> <span class="keyword">user</span> = <span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="gt-安装PHP-7-4-29"><a href="#gt-安装PHP-7-4-29" class="headerlink" title="&gt; 安装PHP 7.4.29"></a><strong>&gt; 安装PHP 7.4.29</strong></h3><p>在安装php前还需要安装pcre2, Libzip, oniguruma和oniguruma-devel(yum源里的可能不够新或者没找到)</p>
+<ul>
+<li><p><code>PCRE2</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.40/pcre2-10.40.tar.gz</span><br><span class="line"><span class="meta">#</span> 解压至当前目录/root/</span><br><span class="line">tar -xf pcre2-10.40.tar.gz</span><br><span class="line">cd pcre2-10.40</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span> 创建软链接</span><br><span class="line">ln -sv /usr/local/pcre2-10/lib/pkgconfig/* /usr/lib64/pkgconfig/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>Libzip</code><br><br>在安装Libzip前需要安装CMAKE(预编译时需要用到)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">  #</span> CMAKE</span><br><span class="line">  cd ~ &amp;&amp; wget https://github.com/Kitware/CMake/releases/download/v3.23.2/cmake-3.23.2.tar.gz</span><br><span class="line">  tar cmake-3.23.2.tar.gz</span><br><span class="line">  cd cmake-3.23.2</span><br><span class="line">  ./configure</span><br><span class="line">  make &amp;&amp; make install</span><br><span class="line"><span class="meta">  #</span> 检测是否安装成功(不行的话试试cmake3 --version)</span><br><span class="line">  cmake --version</span><br><span class="line"><span class="meta">  #</span> Libzip</span><br><span class="line">  cd ~ &amp;&amp; wget https://libzip.org/download/libzip-1.8.0.tar.gz</span><br><span class="line">  tar -xf libzip-1.8.0.tar.gz</span><br><span class="line">  cd libzip-1.8.0</span><br><span class="line">  mkdir build &amp;&amp; cd build</span><br><span class="line">  cmake ..</span><br><span class="line">  make &amp;&amp; make install</span><br><span class="line">  ``` </span><br><span class="line">- `Oniguruma和Oniguruma-devel`</span><br><span class="line">  ``` shell</span><br><span class="line"><span class="meta">  #</span> 省事点直接找了rpm包来安装</span><br><span class="line">  cd ~ &amp;&amp; wget https://rpmfind.net/linux/epel/7/x86_64/Packages/o/oniguruma-6.8.2-2.el7.x86_64.rpm</span><br><span class="line">  cd ~ &amp;&amp; wget https://rpmfind.net/linux/epel/7/x86_64/Packages/o/oniguruma-devel-6.8.2-2.el7.x86_64.rpm</span><br><span class="line">  yum -y install oniguruma-6.8.2-2.el7.x86_64.rpm</span><br><span class="line">  yum -y install oniguruma-devel-6.8.2-2.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<p>别忘了在ld.so.conf加入动态库路径</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ld.so.conf</span><br></pre></td></tr></table></figure>
+<p>加上这两行(编译安装的libzip和pcre2动态库默认路径在这两个地方)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/lib/</span><br><span class="line">/usr/local/lib64</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>下面正式开始安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cd ~ &amp;&amp; wget https://www.php.net/distributions/php-7.4.29.tar.gz</span><br><span class="line">tar -xf php-7.4.29.tar.gz</span><br><span class="line">cd php-7.4.29.tar.gz</span><br><span class="line"><span class="meta">#</span> 这里自己预编译的时候忘记加上带上zip拓展，后面排查起来浪费了好多时间orz</span><br><span class="line"><span class="meta">#</span> 默认路径是/usr/local/php</span><br><span class="line">./configure --prefix=/usr/local/php --exec-prefix=/usr/local/php --with-mysqli --with-pdo-mysql --enable-gd --with-openssl --enable-mbstring --enable-fpm --enable-bcmath --enable-fpm --with-fpm-user=www --with-fpm-group=www --disable-rpath --with-pic --enable-ftp --with-bz2 --with-jpeg --with-freetype --enable-session --with-webp --with-zip</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span> 新建配置文件路径</span><br><span class="line">mkdir /usr/local/php/conf</span><br><span class="line"><span class="meta">#</span> PHP源码包位置</span><br><span class="line">cd /root/php-7.4.29</span><br><span class="line"><span class="meta">#</span> 创建配置文件</span><br><span class="line">cp php.ini-production /usr/local/php/conf/php.ini</span><br><span class="line"><span class="meta">#</span> 创建进程管理脚本，存放在/lib/systemd/system</span><br><span class="line">vim /lib/systemd/system php-fpm.service</span><br></pre></td></tr></table></figure></p>
+<p>  写入以下内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=The PHP FastCGI Process Manager</span><br><span class="line">After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/usr/local/php/var/run/php-fpm.pid</span><br><span class="line">ExecStart=/usr/local/php/sbin/php-fpm --daemonize --fpm-config /usr/local/php/etc/php-fpm.conf --pid /usr/local/php/var/run/php-fpm.pid</span><br><span class="line">ExecReload=/bin/kill -USR2 $MAINPID</span><br><span class="line">ExecStop=/bin/kill -SIGINT $MAINPID</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></p>
+<p>  设置开机启动，启动进程，查看状态<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable php-fpm</span><br><span class="line">systemctl start php-fpm</span><br><span class="line">systemctl status php-fpm</span><br></pre></td></tr></table></figure></p>
+<h3 id="gt-安装Nginx-1-22-0"><a href="#gt-安装Nginx-1-22-0" class="headerlink" title="&gt; 安装Nginx 1.22.0"></a><strong>&gt; 安装Nginx 1.22.0</strong><br></h3><p>在后续配置nginx的时候使用了tls1.3，需要Openssl&gt;=1.1.1，而yum源里最新的也只有1.1.0，所以需要手动编译安装</p>
+<ul>
+<li><p><code>Openssl 1.1.1o</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd ~ &amp;&amp; wget https://www.openssl.org/source/old/1.1.1/openssl-1.1.1o.tar.gz</span><br><span class="line">tar -xf openssl-1.1.1o.tar.gz</span><br><span class="line">cd openssl-1.1.1o</span><br><span class="line"><span class="meta">#</span> 默认路径是/usr/local/ssl，库文件在/usr/local/lib64</span><br><span class="line"><span class="meta">#</span> 部分版本可能需要在预编译时加上参数--enable-tls1_3，这里已经默认启用，不需要再加</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>下面开始安装Nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd ~ &amp;&amp; wget http://nginx.org/download/nginx-1.22.0.tar.gz</span><br><span class="line">tar -xf nginx-1.22.0.tar.gz</span><br><span class="line"><span class="meta">#</span> 由于环境中已经存在Openssl1.1.0，这里需要指定一下Openssl的版本(源码包路径)--with-openssl=/root/openssl-1.1.1o</span><br><span class="line"><span class="meta">#</span> 默认路径是/usr/local/nginx</span><br><span class="line">./configure --user=nginx --group=nginx --with-openssl=/root/openssl-1.1.1o --with-http_v2_module --with-http_ssl_module --with-http_sub_module --with-http_stub_status_module --with-http_gzip_static_module --with-pcre</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"><span class="meta">#</span> 创建进程管理脚本</span><br><span class="line">vim /lib/systemd/system/nginx.service</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>写入以下内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=nginx</span><br><span class="line">After=network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/usr/local/nginx/logs/nginx.pid</span><br><span class="line">ExecStartPost=/bin/sleep 0.1</span><br><span class="line">ExecStartPre=/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br><span class="line">ExecReload=/bin/kill -s HUP $MAINPID</span><br><span class="line">ExecStop=/bin/kill -s QUIT $MAINPID</span><br><span class="line">PrivateTmp=true</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure></p>
+<p>设置开机启动，启动进程，查看状态<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable nginx</span><br><span class="line">systemctl start nginx</span><br><span class="line">systemctl status nginx</span><br></pre></td></tr></table></figure></p>
+<p>至此环境准备部分就做完了</p>
+<hr>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><strong>配置</strong></h2><h3 id="gt-Blessing-Skin-5-2-0"><a href="#gt-Blessing-Skin-5-2-0" class="headerlink" title="&gt; Blessing Skin 5.2.0"></a><strong>&gt; Blessing Skin 5.2.0</strong></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 作者只提供了zip</span><br><span class="line">cd ~ &amp;&amp; wget https://github.com/bs-community/blessing-skin-server/releases/download/5.2.0/blessing-skin-server-5.2.0.zip</span><br><span class="line"><span class="meta">#</span> 解压用unzip，使用-d来指定你想要的目录</span><br><span class="line">unzip blessing-skin-server-5.2.0 -d /usr/local/nginx/blessing-skin-server-5.2.0</span><br></pre></td></tr></table></figure>
+<p>这里需要注意权限的配置否则会报403 Forbidden<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 将网站根目录所有者更改为nginx</span><br><span class="line"><span class="meta">#</span> chown [-R] 所有者 文件或目录，-R表示连同子目录中的所有文件，都更改所有者</span><br><span class="line">chown -R nginx /usr/local/nginx/blessing-skin-server-5.2.0</span><br></pre></td></tr></table></figure></p>
+<h3 id="gt-配置证书相关"><a href="#gt-配置证书相关" class="headerlink" title="&gt; 配置证书相关"></a><strong>&gt; 配置证书相关</strong></h3><p>这里使用Let’s Encrypt和acme.sh脚本来签发https证书<br><br>参考<a href="https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E" target="_blank" rel="noopener">https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E</a><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 安装脚本，把邮箱替换成你的，签发时需要用到</span><br><span class="line">curl  https://get.acme.sh | sh -s email=1263635137@qq.com</span><br><span class="line"><span class="meta">#</span> 给脚本设置别名方便使用</span><br><span class="line">alias acme.sh=~/.acme.sh/acme.sh</span><br><span class="line"><span class="meta">#</span> 指定域名，指定网站目录，签发证书</span><br><span class="line">acme.sh  --issue  -d skin.bluewolf.moe  --webroot  /usr/local/nginx/blessing-skin-server-5.2.0</span><br></pre></td></tr></table></figure></p>
+<p>证书签发后会在 60 天以后会自动更新, 无需任何操作，接下来还需要安装证书<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 将证书存放在/usr/local/nginx/ssl/skin.bluewolf.moe</span><br><span class="line">acme.sh --install-cert -d skin.bluewolf.moe --key-file /usr/local/nginx/ssl/skin.bluewolf.moe/key.pem --fullchain-file /usr/local/nginx/ssl/skin.bluewolf.moe/cert.pem</span><br></pre></td></tr></table></figure></p>
+<h3 id="gt-配置Nginx"><a href="#gt-配置Nginx" class="headerlink" title="&gt; 配置Nginx"></a><strong>&gt; 配置Nginx</strong></h3><p>默认配置文件位于/usr/local/nginx/conf<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 新建一个目录用于存放站点配置文件</span><br><span class="line">mkdir /usr/local/nginx/conf/conf.d</span><br><span class="line"><span class="meta">#</span> 新建站点配置skin.conf</span><br><span class="line">vim /usr/local/nginx/conf/conf.d/skin.conf</span><br></pre></td></tr></table></figure></p>
+<p>插入以下内容<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">server</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="string">listen</span>       <span class="number">443</span> <span class="string">ssl;</span></span><br><span class="line">    <span class="string">server_name</span>  <span class="string">skin.bluewolf.moe;</span></span><br><span class="line">    <span class="string">root</span> <span class="string">/usr/local/nginx/blessing-skin-server-5.2.0/public;</span></span><br><span class="line">    <span class="string">index</span>  <span class="string">index.php</span> <span class="string">index.html</span> <span class="string">index.htm;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 解决jsdelivr在国内被污染的问题</span></span><br><span class="line">    <span class="string">sub_filter</span> <span class="string">'cdn.jsdelivr.net'</span> <span class="string">'fastly.jsdelivr.net'</span><span class="string">;</span></span><br><span class="line">    <span class="string">sub_filter_once</span> <span class="string">off;</span></span><br><span class="line">    <span class="string">sub_filter_types</span> <span class="string">*;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 证书和tls相关</span></span><br><span class="line">    <span class="string">ssl_certificate</span>       <span class="string">/usr/local/nginx/ssl/skin.bluewolf.moe/cert.pem;</span></span><br><span class="line">    <span class="string">ssl_certificate_key</span>   <span class="string">/usr/local/nginx/ssl/skin.bluewolf.moe/key.pem;</span></span><br><span class="line">    <span class="string">ssl_protocols</span>         <span class="string">TLSv1.3;</span></span><br><span class="line">    <span class="string">ssl_ciphers</span>           <span class="attr">TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+ECDSA+AES128:EECDH+aRSA+AES128:RSA+AES128:EECDH+ECDSA+AES256:EECDH+aRSA+AES256:RSA+AES256:EECDH+ECDSA+3DES:EECDH+aRSA+3DES:RSA+3DES:!MD5;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">ssl_early_data</span> <span class="string">on;</span></span><br><span class="line">    <span class="string">ssl_stapling</span> <span class="string">on;</span></span><br><span class="line">    <span class="string">ssl_stapling_verify</span> <span class="string">on;</span></span><br><span class="line">    <span class="string">add_header</span> <span class="string">Strict-Transport-Security</span> <span class="string">"max-age=31536000"</span><span class="string">;</span></span><br><span class="line">    <span class="string">proxy_set_header</span> <span class="string">Early-Data</span> <span class="string">$ssl_early_data;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 皮肤站相关，参考https://blessing.netlify.app/setup.html</span></span><br><span class="line">    <span class="string">location</span> <span class="string">/</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="string">try_files</span> <span class="string">$uri</span> <span class="string">$uri/</span> <span class="string">/index.php?$query_string;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># php相关，参考https://blog.csdn.net/Mjklioptop/article/details/123962639</span></span><br><span class="line">    <span class="string">location</span> <span class="string">~</span> <span class="string">\.php$</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="string">fastcgi_pass</span>   <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:9000;</span></span><br><span class="line">        <span class="string">fastcgi_param</span>  <span class="string">SCRIPT_FILENAME</span>  <span class="string">/usr/local/nginx/blessing-skin-server-5.2.0/public$fastcgi_script_name;</span></span><br><span class="line">        <span class="string">include</span>        <span class="string">fastcgi_params;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">server</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="string">listen</span> <span class="number">80</span><span class="string">;</span></span><br><span class="line"> <span class="string">server_name</span> <span class="string">skin.bluewolf.moe;</span></span><br><span class="line"> <span class="string">return</span> <span class="number">301</span> <span class="attr">https://skin.bluewolf.moe$request_uri;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>上述配置文件中已配置证书，域名，强制https并使用tls1.3，由于近期jsdelivr在国内被和谐还需要使用sub_filter做一个替换<br><br>将<code>cdn.jsdelivr.net</code>全部替换成<code>fastly.jsdelivr.net</code><br><br>参考<a href="https://github.com/jsdelivr/jsdelivr/issues/18397" target="_blank" rel="noopener">https://github.com/jsdelivr/jsdelivr/issues/18397</a><br><br>2022-7-15更新：原域名已恢复访问，实际环境中不再使用fastly.jsdelivr.net</p>
+</blockquote>
+<p>接下来还需要在nginx.conf中应用站点配置，顺便对nginx进行一些设置<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在末尾加入include conf.d/*.conf;</span></span><br><span class="line"></span><br><span class="line"><span class="string">user</span>  <span class="string">nginx;</span></span><br><span class="line"><span class="string">worker_processes</span>  <span class="number">1</span><span class="string">;</span></span><br><span class="line"></span><br><span class="line"><span class="string">error_log</span>  <span class="string">logs/error.log</span> <span class="string">error;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  notice;</span></span><br><span class="line"><span class="comment">#error_log  logs/error.log  info;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#pid        logs/nginx.pid;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">events</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="string">worker_connections</span>  <span class="number">1024</span><span class="string">;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">http</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="string">include</span>       <span class="string">mime.types;</span></span><br><span class="line">    <span class="string">default_type</span>  <span class="string">application/octet-stream;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '</span></span><br><span class="line">    <span class="comment">#                  '$status $body_bytes_sent "$http_referer" '</span></span><br><span class="line">    <span class="comment">#                  '"$http_user_agent" "$http_x_forwarded_for"';</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#access_log  logs/access.log  main;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">sendfile</span>        <span class="string">on;</span></span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#keepalive_timeout  0;</span></span><br><span class="line">    <span class="string">keepalive_timeout</span>  <span class="number">65</span><span class="string">;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">gzip</span>  <span class="string">on;</span></span><br><span class="line"></span><br><span class="line">    <span class="string">server</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="string">listen</span>       <span class="number">80</span><span class="string">;</span></span><br><span class="line">        <span class="string">server_name</span>  <span class="string">localhost;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#charset koi8-r;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#access_log  logs/host.access.log  main;</span></span><br><span class="line"></span><br><span class="line">        <span class="string">location</span> <span class="string">/</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="string">root</span>   <span class="string">html;</span></span><br><span class="line">            <span class="string">index</span>  <span class="string">index.html</span> <span class="string">index.htm;</span></span><br><span class="line">        <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="string">error_page</span>  <span class="number">404</span>              <span class="string">/404.html;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># redirect server error pages to the static page /50x.html</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="string">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  <span class="string">/50x.html;</span></span><br><span class="line">        <span class="string">location</span> <span class="string">=</span> <span class="string">/50x.html</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="string">root</span>   <span class="string">html;</span></span><br><span class="line">        <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># proxy the PHP scripts to Apache listening on 127.0.0.1:80</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="comment">#location ~ \.php$ &#123;</span></span><br><span class="line">        <span class="comment">#    proxy_pass   http://127.0.0.1;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000</span></span><br><span class="line">        </span><br><span class="line">        <span class="string">location</span> <span class="string">~</span> <span class="string">\.php$</span> <span class="string">&#123;</span></span><br><span class="line">            <span class="string">root</span>           <span class="string">html;</span></span><br><span class="line">            <span class="string">fastcgi_pass</span>   <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:9000;</span></span><br><span class="line">            <span class="string">fastcgi_index</span>  <span class="string">index.php;</span></span><br><span class="line">            <span class="string">fastcgi_param</span>  <span class="string">SCRIPT_FILENAME</span>  <span class="string">$document_root$fastcgi_script_name;</span></span><br><span class="line">            <span class="string">include</span>        <span class="string">fastcgi_params;</span></span><br><span class="line">        <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># deny access to .htaccess files, if Apache's document root</span></span><br><span class="line">        <span class="comment"># concurs with nginx's one</span></span><br><span class="line">        <span class="comment">#</span></span><br><span class="line">        <span class="comment">#location ~ /\.ht &#123;</span></span><br><span class="line">        <span class="comment">#    deny  all;</span></span><br><span class="line">        <span class="comment">#&#125;</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># another virtual host using mix of IP-, name-, and port-based configuration</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#server &#123;</span></span><br><span class="line">    <span class="comment">#    listen       8000;</span></span><br><span class="line">    <span class="comment">#    listen       somename:8080;</span></span><br><span class="line">    <span class="comment">#    server_name  somename  alias  another.alias;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#    location / &#123;</span></span><br><span class="line">    <span class="comment">#        root   html;</span></span><br><span class="line">    <span class="comment">#        index  index.html index.htm;</span></span><br><span class="line">    <span class="comment">#    &#125;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># HTTPS server</span></span><br><span class="line">    <span class="comment">#</span></span><br><span class="line">    <span class="comment">#server &#123;</span></span><br><span class="line">    <span class="comment">#    listen       443 ssl;</span></span><br><span class="line">    <span class="comment">#    server_name  localhost;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#    ssl_certificate      cert.pem;</span></span><br><span class="line">    <span class="comment">#    ssl_certificate_key  cert.key;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#    ssl_session_cache    shared:SSL:1m;</span></span><br><span class="line">    <span class="comment">#    ssl_session_timeout  5m;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#    ssl_ciphers  HIGH:!aNULL:!MD5;</span></span><br><span class="line">    <span class="comment">#    ssl_prefer_server_ciphers  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#    location / &#123;</span></span><br><span class="line">    <span class="comment">#        root   html;</span></span><br><span class="line">    <span class="comment">#        index  index.html index.htm;</span></span><br><span class="line">    <span class="comment">#    &#125;</span></span><br><span class="line">    <span class="comment">#&#125;</span></span><br><span class="line"><span class="string">include</span> <span class="string">conf.d/*.conf;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="完成！"><a href="#完成！" class="headerlink" title="完成！"></a><strong>完成！</strong></h2><p>现在，访问你的站点域名，按照引导进行站点配置即可，如果出现问题，可以按照官方的<a href="https://blessing.netlify.app/setup.html" target="_blank" rel="noopener">安装指南</a>进行排查</p>
+<p><img src="https://s1.ax1x.com/2022/07/16/j4dC59.png" alt="安装界面"></p>
+<p><img src="https://s1.ax1x.com/2022/07/16/j4diCR.png" alt="主界面"></p>
+
+    </div>
+</article>
+
+
+                </div>
+                <theme.sidebar.links =="=" true="">
+<aside class="col-md-4 gal-left" id="sidebar">
+    <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
+<aside id="sidebar-search">
+    <div class="search hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <form class="form-inline clearfix" id="search-form" method="get" action="/search/index.html">
+            <input type="text" name="s" class="form-control" id="searchInput" placeholder="搜索文章~" autocomplete="off">
+            <button class="btn btn-danger btn-gal" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+</aside>
+    <aside id="sidebar-author">
+    <div class="panel panel-gal" data-aos="flip-right" data-aos-duration="3000">
+        <div class="panel-heading" style="text-align: center">
+            <i class="fa fa-quote-left"></i>
+            BlueWolf
+            <i class="fa fa-quote-right"></i>
+        </div>
+        <div class="author-panel text-center">
+            <img src="/imgs/illust_70352399_20180908_025225.png" width="140" height="140" alt="个人头像" class="author-image">
+            <p class="author-description"></p><p>此生相遇，三生有幸</p>
+<p></p>
+        </div>
+    </div>
+</aside>
+    
+    <!-- 要配置好leancloud才能开启此小工具 -->
+    
+    
+    <aside id="sidebar-recent_posts">
+    <div class="panel panel-gal recent hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+        <div class="panel-heading">
+            <i class="fa fa-refresh"></i>
+            近期文章
+            <i class="fa fa-times-circle panel-remove"></i>
+            <i class="fa fa-chevron-circle-up panel-toggle"></i>
+        </div>
+        <ul class="list-group list-group-flush">
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/mc_skinsite/">LNMP环境Minecraft皮肤站搭建过程</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/gmod_tttkarma/">ttt动态karma插件</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/gmod_medikit_bug/">关于gmod zs医疗包重置冷却时间的bug</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/filminfo/">电影目录</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/oneindex/">苍狼の盘个人网盘开通</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/npmconvert/">网易云NCM无损转FLAC批处理</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/hello-world/">Hello 2019！</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
+                    <a href="/163download/">网易云直链解析API</a>
+                </span>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+    
+    
+    
+    <aside id="gal-sets">
+        <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
+            <ul class="nav nav-pills pills-gal">
+
+                
+                
+                
+                <!-- class= active表示进入页面后直接选中个人链接 -->
+                <li class="active">
+                    <a href="/mc_skinsite/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                </li>
+                
+            </ul>
+            <div class="tab-content">
+                
+                
+                
+                <!-- active in表示进入页面后直接显示个人链接中的下拉菜单 -->
+<div class="links tab-pane nav bs-sidenav fade active in" id="sidebar-links">
+    
+    <li>
+        <a href="https://github.com/BlueWolfOvO" target="_blank">Github</a>
+    </li>
+    
+    <li>
+        <a href="https://steamcommunity.com/id/bluewolf23333/" target="_blank">STEAM</a>
+    </li>
+    
+</div>
+
+                
+            </div>
+        </div>
+    </aside>
+    
+</aside>
+</theme.sidebar.links>
+            </div>
+        </div>
+    </div>
+    <footer id="gal-footer">
+    <div class="container">
+        Copyright © 2018 BlueWolf Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>.&nbsp;Theme by <a href="https://github.com/ZEROKISEKI" target="_blank">AONOSORA</a>
+    </div>
+</footer>
+
+<!-- 回到顶端 -->
+<div id="gal-gotop">
+    <i class="fa fa-angle-up"></i>
+</div>
+</body>
+<script src="/js/activate-power-mode.js"></script>
+<script>
+
+    // 配置highslide
+	hs.graphicsDir = 'js/highslide/graphics/'
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    hs.lang.number = '共%2张图, 当前是第%1张';
+    hs.addSlideshow({
+      interval: 5000,
+      repeat: true,
+      useControls: true,
+      fixedControls: "fit",
+      overlayOptions: {
+        opacity: 0.75,
+        position: "bottom center",
+        hideOnMouseOut: true
+      }
+    })
+
+    // 初始化aos
+    AOS.init({
+      duration: 1000,
+      delay: 0,
+      easing: 'ease-out-back'
+    });
+
+</script>
+<script>
+	POWERMODE.colorful = 'true';    // make power mode colorful
+	POWERMODE.shake = 'true';       // turn off shake
+	// TODO 这里根据具体情况修改
+	document.body.addEventListener('input', POWERMODE);
+</script>
+<script>
+    window.slideConfig = {
+      prefix: 'http://bluewolf.oss-cn-shanghai.aliyuncs.com/background',
+      ext: 'png',
+      maxCount: '6'
+    }
+</script>
+<script src="/js/hs.js"></script>
+<script src="/js/blog.js"></script>
+
+
+
+</html>

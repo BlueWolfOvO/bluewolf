@@ -5,7 +5,7 @@ $(document).pjax('a', '#musiclist',{
 const ap = new APlayer({
     container: document.getElementById('aplayer'),
     fixed: true,
-    autoplay: true,
+    autoplay: false,
 	  lrcType: 3,
     volume: 0.2,
     audio: [
